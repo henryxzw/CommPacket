@@ -2,19 +2,29 @@ package com.comm.commpacket.launcher;
 
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.Toast;
+
 import com.comm.commpacket.ActivityMainBinding;
 import com.comm.commpacket.CommItemListBinding;
 import com.comm.commpacket.R;
 import com.comm.commpacket.adapter.CommListAdapter;
+import com.comm.commpacket.adapter.CommReAdapter;
 import com.comm.commpacket.listener.ListItemOnClickListener;
+import com.comm.commpacket.listener.RecyItemOnClickListener;
+import com.comm.commpacket.method.AppKeyMap;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
-public class MainActivity extends AppCompatActivity implements ListItemOnClickListener {
+public class MainActivity extends AppCompatActivity implements ListItemOnClickListener ,RecyItemOnClickListener{
 
     ActivityMainBinding binding;
     ListView listView;
@@ -27,6 +37,7 @@ public class MainActivity extends AppCompatActivity implements ListItemOnClickLi
         binding = DataBindingUtil.setContentView(this,R.layout.activity_main);
         listView = binding.list;
         InitData();
+        AppKeyMap.GetInstance().GetSharedPreferences(this,"name");
     }
 
     public void InitData()
@@ -55,6 +66,22 @@ public class MainActivity extends AppCompatActivity implements ListItemOnClickLi
         listAdapter.SetItemClickListener(this);
 
         listView.setAdapter(listAdapter);
+        RecyclerView recyclerView = binding.recycle;
+        CommReAdapter<Object> adapter = new CommReAdapter<Object>(this,list,R.layout.item_list_view) {
+            @Override
+            protected int SelectType(Object o) {
+                return 0;
+            }
+
+            @Override
+            protected void BindItemData(ViewHolder holder, int position) {
+                CommItemListBinding itemBinding = (CommItemListBinding)holder.viewDataBinding;
+                itemBinding.tvItem.setText(""+position+" hahhhh");
+            }
+        };
+        adapter.SetOnBindItemClick(this);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(adapter);
     }
 
 
@@ -62,5 +89,10 @@ public class MainActivity extends AppCompatActivity implements ListItemOnClickLi
     public void onItemClickListener(Object data, ViewDataBinding binding) {
         CommItemListBinding itemBinding = (CommItemListBinding)binding;
         itemBinding.tvItem.setText(itemBinding.tvItem.getText()+"   click");
+    }
+
+    @Override
+    public void OnBindItemClickListener(Object data, ViewDataBinding viewDataBinding) {
+        Toast.makeText(this,"nilaoban",Toast.LENGTH_LONG).show();
     }
 }
