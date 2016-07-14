@@ -5,18 +5,25 @@ import android.databinding.ViewDataBinding;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+
+import com.comm.commpacket.callback.HttpResultCallBack;
+import com.comm.commpacket.network.NetWorkModel;
+
 import static android.os.Build.VERSION.SDK_INT;
 
 /**
  * Created by apple on 16/7/8.
  */
 
-public abstract class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity<T> extends AppCompatActivity implements HttpResultCallBack<T>{
 
     protected ViewDataBinding viewDataBinding;
     protected View parentView;
+
+    protected NetWorkModel netWorkModel;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -25,10 +32,13 @@ public abstract class BaseActivity extends AppCompatActivity {
         viewDataBinding = DataBindingUtil.setContentView(this,resId);
         parentView = viewDataBinding.getRoot();
 
-        if(SDK_INT<=Build.VERSION_CODES.KITKAT)
-        {
+        if(SDK_INT<=Build.VERSION_CODES.KITKAT) {
             this.getWindow().getDecorView().setFitsSystemWindows(true);
         }
+
+        netWorkModel = new NetWorkModel();
+        netWorkModel.setCallBack(this);
+
         InitView();
         InitEvent();
         InitListener();
@@ -61,4 +71,19 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected abstract void InitData();
     protected abstract void InitListener();
     protected abstract int getContentView();
+
+    @Override
+    public void onSuccess(T t, int resultCode) {
+
+    }
+
+    @Override
+    public void onResponse(T t, int resultCode) {
+
+    }
+
+    @Override
+    public void onFailure(String data, int resultCode) {
+
+    }
 }

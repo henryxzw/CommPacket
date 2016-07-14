@@ -24,6 +24,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import okhttp3.OkHttpClient;
+
 public class MainActivity extends AppCompatActivity implements ListItemOnClickListener ,RecyItemOnClickListener{
 
     ActivityMainBinding binding;
@@ -38,6 +40,7 @@ public class MainActivity extends AppCompatActivity implements ListItemOnClickLi
         listView = binding.list;
         InitData();
         AppKeyMap.GetInstance().GetSharedPreferences(this,"name");
+
     }
 
     public void InitData()
