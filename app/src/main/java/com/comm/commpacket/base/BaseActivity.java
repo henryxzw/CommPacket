@@ -11,6 +11,7 @@ import android.view.View;
 
 import com.comm.commpacket.callback.HttpResultCallBack;
 import com.comm.commpacket.network.NetWorkModel;
+import com.comm.commpacket.network.NetWorkParamsIndex;
 
 import static android.os.Build.VERSION.SDK_INT;
 
@@ -63,27 +64,25 @@ public abstract class BaseActivity<T> extends AppCompatActivity implements HttpR
         super.onDestroy();
     }
 
-    protected abstract void Resume();
-    protected abstract void Pause();
-    protected abstract void Destroy();
+
     protected abstract void InitView();
     protected abstract void InitEvent();
     protected abstract void InitData();
     protected abstract void InitListener();
+    protected abstract void Resume();
+    protected abstract void Pause();
+    protected abstract void Destroy();
     protected abstract int getContentView();
+    protected abstract void OnSuccessResponse(T t,NetWorkParamsIndex resultCode);
+    protected abstract void OnFailureResponse(String msg,NetWorkParamsIndex resultCode);
 
     @Override
-    public void onSuccess(T t, int resultCode) {
-
+    public void onResponse(T t, NetWorkParamsIndex resultCode) {
+         OnSuccessResponse(t,resultCode);
     }
 
     @Override
-    public void onResponse(T t, int resultCode) {
-
-    }
-
-    @Override
-    public void onFailure(String data, int resultCode) {
-
+    public void onFailure(String data, NetWorkParamsIndex resultCode) {
+        OnFailureResponse(data,resultCode);
     }
 }
