@@ -31,6 +31,11 @@ public class HttpBuilder {
             return this;
         }
 
+        /**
+         * 普通键值对上传参数
+         * @param params
+         * @return
+         */
         public POST params(HashMap<String,String> params)
         {
             MultipartBody.Builder builder = new MultipartBody.Builder().setType(MultipartBody.FORM);
@@ -42,6 +47,13 @@ public class HttpBuilder {
             return this;
         }
 
+        /**
+         * 不同文件不同key上传
+         * @param params
+         * @param files
+         * @param keys
+         * @return
+         */
         public POST params(HashMap<String,String> params, List<List<String>> files,String... keys)
         {
             return this;

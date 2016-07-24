@@ -1,11 +1,11 @@
 package com.comm.commpacket.base;
 
+import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
@@ -23,13 +23,14 @@ public abstract class BaseActivity<T> extends AppCompatActivity implements HttpR
 
     protected ViewDataBinding viewDataBinding;
     protected View parentView;
-
+    protected Context context;
     protected NetWorkModel netWorkModel;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         int resId = getContentView();
+        this.context = this;
         viewDataBinding = DataBindingUtil.setContentView(this,resId);
         parentView = viewDataBinding.getRoot();
 
