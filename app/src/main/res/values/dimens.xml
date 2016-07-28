@@ -3,9 +3,4 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
-    <declare-styleable name="GradientTextView">
-        <attr name="text"></attr>
-        <attr name="normal_color" format="color"></attr>
-        <attr name="press_color" format="color"></attr>
-    </declare-styleable>
 </resources>

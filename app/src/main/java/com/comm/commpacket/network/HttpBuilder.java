@@ -1,15 +1,12 @@
 package com.comm.commpacket.network;
 
 import com.comm.commpacket.callback.HttpResultCallBack;
-import com.google.common.net.MediaType;
-import com.google.repacked.antlr.v4.codegen.model.chunk.ThisRulePropertyRef_ctx;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import okhttp3.MultipartBody;
-import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 
