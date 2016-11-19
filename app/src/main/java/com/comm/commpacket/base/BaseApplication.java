@@ -5,6 +5,8 @@ import android.app.Application;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 
+import com.comm.commpacket.method.AppKeyMap;
+import com.comm.commpacket.method.MethodConfig;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.Picasso;
 
@@ -27,6 +29,9 @@ public abstract class BaseApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
+        //初始化程序配置
+        MethodConfig.InitMetrics(this);
+        AppKeyMap.GetInstance().GetSharedPreferences(this,getApplicationConfigName());
         InitData();
         InitListener();
 
@@ -35,6 +40,7 @@ public abstract class BaseApplication extends Application {
 
     protected abstract void  InitData();
     protected abstract void InitListener();
+    protected abstract String getApplicationConfigName();
 
     /**
      * gfinal 初始化

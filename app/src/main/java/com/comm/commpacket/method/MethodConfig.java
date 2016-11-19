@@ -22,7 +22,7 @@ public class MethodConfig {
      * 屏幕尺寸
      */
 
-    public static DisplayMetrics metrics;
+    public static DisplayMetrics metrics = new DisplayMetrics();;
 
     public static void InitMetrics(Context context)
     {

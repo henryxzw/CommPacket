@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -24,6 +25,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import cn.finalteam.galleryfinal.GalleryFinal;
+import cn.finalteam.galleryfinal.model.PhotoInfo;
 import okhttp3.OkHttpClient;
 
 public class MainActivity extends AppCompatActivity implements ListItemOnClickListener ,RecyItemOnClickListener{
@@ -40,6 +43,7 @@ public class MainActivity extends AppCompatActivity implements ListItemOnClickLi
         listView = binding.list;
         InitData();
         AppKeyMap.GetInstance().GetSharedPreferences(this,"name");
+
 
     }
 
@@ -96,6 +100,41 @@ public class MainActivity extends AppCompatActivity implements ListItemOnClickLi
 
     @Override
     public void OnBindItemClickListener(Object data, ViewDataBinding viewDataBinding) {
-        Toast.makeText(this,"nilaoban",Toast.LENGTH_LONG).show();
+        GalleryFinal.openGalleryMuti(101, 3, new GalleryFinal.OnHanlderResultCallback() {
+            @Override
+            public void onHanlderSuccess(int reqeustCode, List<PhotoInfo> resultList) {
+                switch (reqeustCode)
+                {
+                    case 101:
+                    {
+                        for(int i=0;i<resultList.size();i++) {
+                            Log.e("rr", resultList.get(i).getPhotoPath());
+                        }
+                    }
+                        break;
+                }
+            }
+
+            @Override
+            public void onHanlderFailure(int requestCode, String errorMsg) {
+
+            }
+        });
+//        GalleryFinal.openCamera(101, new GalleryFinal.OnHanlderResultCallback() {
+//            @Override
+//            public void onHanlderSuccess(int reqeustCode, List<PhotoInfo> resultList) {
+//                switch (reqeustCode)
+//                {
+//                    case 101:
+//
+//                        break;
+//                }
+//            }
+//
+//            @Override
+//            public void onHanlderFailure(int requestCode, String errorMsg) {
+//
+//            }
+//        });
     }
 }

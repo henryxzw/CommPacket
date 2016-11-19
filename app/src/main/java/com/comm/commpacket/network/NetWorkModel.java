@@ -1,5 +1,6 @@
 package com.comm.commpacket.network;
 
+import com.comm.commpacket.bean.BaseBean;
 import com.comm.commpacket.callback.HttpResultCallBack;
 
 import java.util.ArrayList;
@@ -30,6 +31,13 @@ public class NetWorkModel<T> {
 
     public void setCallBack(HttpResultCallBack<T> callBack) {
         this.callBack = callBack;
+    }
+
+    public void PostTest(String url,String name,NetWorkParamsIndex paramsIndex)
+    {
+        params.clear();
+        params.put("test",name);
+        new HttpBuilder.POST().params(params).url(url).clz(BaseBean.class).callBack(callBack).run(paramsIndex);
     }
 
 }

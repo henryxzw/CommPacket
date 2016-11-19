@@ -16,11 +16,11 @@ public class AppKeyMap {
 
     public static SharedPreferences sharedPreferences;
 
-    private static AppKeyMap instance;
+    private static AppKeyMap instance = null;
 
     public static AppKeyMap GetInstance()
     {
-        synchronized (instance)
+        synchronized (AppKeyMap.class)
         {
             if(instance==null)
             {
