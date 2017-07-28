@@ -1,4 +1,4 @@
-package com.comm.commpacket.view.TextView;
+package com.comm.commpacket.views.textview;
 
 import android.content.Context;
 import android.content.res.TypedArray;
