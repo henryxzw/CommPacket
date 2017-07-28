@@ -46,6 +46,7 @@ public class TestActivity extends BaseActivity {
     protected void InitView() {
         binding = (ActivityTestBinding) viewDataBinding;
 
+        //test
         // netWorkModel.PostTest("http://www.izhuangse.com/Api/User/Login/checkReg","13425741527",NetWorkParamsIndex.A);
     }
 
