@@ -1,7 +1,6 @@
 package com.comm.commpacket.view.TextView;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -10,8 +9,8 @@ import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
+import android.support.v7.widget.AppCompatTextView;
 import android.util.AttributeSet;
-import android.widget.TextView;
 
 import com.comm.commpacket.R;
 
@@ -19,7 +18,7 @@ import com.comm.commpacket.R;
  * Created by henry on 2016/5/13.
  * 滑动渐变
  */
-public class GradientTextView extends TextView {
+public class GradientTextView extends AppCompatTextView {
     private  int mm = 0; //渲染的距离  <0:从x=0开始  >0:从width开始
     private String text="";
     private Paint mPaint;

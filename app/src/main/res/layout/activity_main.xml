@@ -1,25 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
-    <data class=".ActivityMainBinding"></data>
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".launcher.MainActivity">
-<ListView
-    android:id="@+id/list"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:visibility="gone">
 
- </ListView>
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycle"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data class=".ActivityMainBinding"></data>
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
-</RelativeLayout>
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/animation_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:lottie_fileName="test.json"
+            app:lottie_loop="true"
+            app:lottie_autoPlay="true" />
+    <com.comm.commpacket.view.ScrollView.SplitScrollView android:id="@+id/scrollView"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
+        <android.support.v7.widget.LinearLayoutCompat
+            android:id="@+id/linear_bg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:showDividers="end">
+            <LinearLayout
+                android:id="@+id/linear_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:text="sdfsdf"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:text="sdfsdf"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="500dp"
+                android:text="sdfsdf"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:background="#ff0000"
+                android:text="这是一个测试"/>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="#00f0f0"></View>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linear_2"
+                android:layout_width="match_parent"
+                android:layout_height="1500dp"
+                android:background="#0f5677"
+                android:orientation="vertical">
+
+            </LinearLayout>
+        </android.support.v7.widget.LinearLayoutCompat>
+
+        </com.comm.commpacket.view.ScrollView.SplitScrollView>
+
+    </LinearLayout>
 </layout>
